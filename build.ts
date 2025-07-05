@@ -42,7 +42,7 @@ export const buildAndUploadNanode = async (version = 'v18.x', {
     const buildName = `nanode-${version}-icu_${icu_mode}${v8_opts ? '-v8_opts' : ''}${no_jit ? '-nojit' : ''}${use_lto ? '-lto' : ''}${win_use_clang_cl ? '-clang' : ''}${pointer_compression ? '-ptr_compr' : ''}-${target_arch}`;
 
     const { data: release } = await octokit.repos.getReleaseByTag({
-        owner: 'MicroCBer',
+        owner: 'undefined-moe',
         repo: 'nanode',
         tag: version
     }).catch(e => ({
