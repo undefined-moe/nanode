@@ -1,10 +1,12 @@
 import { writeFileSync } from "fs";
 import { createOrUpdateRelease, octokit } from "./github.js";
 import { _main, parseVersion, patchFile } from "./utilities.js";
-import { $ } from 'execa';
+import { $ as $$ } from 'execa';
 import { rmdir } from "fs/promises";
 import { minifyJS } from "./minify-undici.js";
 import { platform } from "os";
+
+const $ = $$({ stdout: ['pipe', 'inherit'] });
 
 export interface NanodeBuildOptions {
     icu_mode?: 'full' | 'small' | 'system' | 'none',
@@ -102,6 +104,8 @@ export const buildAndUploadNanode = async (version = 'v18.x', {
             code = code.replaceAll('options.without_npm', 'True');
             code = code.replaceAll('options.without_corepack', 'True');
             code = code.replaceAll('options.without_amaro', 'True');
+            code = code.replaceAll('options.without_sqlite', 'True');
+            code = code.replaceAll('options.without_inspector', 'True');
 
             return code
         })

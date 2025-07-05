@@ -12,9 +12,9 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        version: ['v22.x', 'v18.x', 'v16.x', 'v20.x', 'v19.x', 'v17.x']
-        strategy: [a, b, c]
-        architecture: [arm64, x64]
+        version: ['v22.x', 'v20.x']
+        strategy: [a, c, d, ptrcompression]
+        architecture: [x64]
     steps:
       - name: Setup repo
         uses: actions/checkout@v4

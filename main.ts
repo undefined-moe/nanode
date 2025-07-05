@@ -13,10 +13,12 @@ _main(async () => {
         try {
             await buildAndUploadNanode(targetBranch, {
                 ...strategy, target_arch: arch as any,
-                win_use_clang_cl: process.platform === 'win32' && parseVersion(targetBranch) >= 22
+                win_use_clang_cl: process.platform === 'win32' && parseVersion(targetBranch) >= 22,
+                make_upx_build: false,
             })
             break
         } catch (e) {
+            console.error(e);
             console.error('Build failed, retrying...', i)
         }
     }
